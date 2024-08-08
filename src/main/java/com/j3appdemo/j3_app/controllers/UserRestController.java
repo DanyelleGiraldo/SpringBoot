@@ -26,7 +26,7 @@ public class UserRestController {
         return userDto;
     }
 
-    @GetMapping("/list-details")
+    @GetMapping("/listdetails")
     public List<User> listdetails() {
         User user = new User("Danilo", "Jimenez", "");
         User userA = new User("Juan", "Tinoco", "" );

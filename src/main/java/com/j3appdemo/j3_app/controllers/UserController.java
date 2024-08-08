@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.j3appdemo.j3_app.models.User;
 
@@ -20,6 +22,22 @@ public class UserController {
         model.addAttribute("title", "Hola");
         model.addAttribute("user", user);
         return "details";
+    }
+
+    @GetMapping("/form")
+    public String showForm(Model model) {
+        model.addAttribute("user", new User());
+        return "form";
+    }
+
+    @PostMapping("/form")
+    public String submitUser(@RequestParam String nombre, 
+                             @RequestParam String apellido, 
+                             @RequestParam(required = false) String email, 
+                             Model model) {
+        User user = new User(nombre, apellido, email);
+        model.addAttribute("user", user);
+        return "form";
     }
 
     @GetMapping("/list")
